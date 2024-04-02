@@ -1,40 +1,27 @@
-import { useState } from 'react';
-import logo from './logo.svg'
-import './App.css';
+import "./App.css";
+import Carousel from "./Carousel";
+import photos from "./photos.js";
 
-
-/** Component for entire page.
- *
+/** App component, renders Carousel
+ * 
  * Props: none
  * State: none
- *
-*/
+ * 
+ * App --> Carousel
+ */
 
 function App() {
-  const [count, setCount] = useState(0);
 
-  function incrCount() {
-    setCount(count => count + 1);
-  }
+  // In real life, this data would probably come from an AJAX call.
+  // For our purposes, we're just importing from another file.
+  const carouselPhotos = photos;
+  const carouselTitle = "Shells from far-away beaches";
 
   return (
     <div className="App">
-      <main>
-        <img src={logo} className="App-logo" alt="Rithm" />
-        <h1>Rithm React Starter</h1>
-        <p>
-          <button
-              className="btn btn-primary"
-              onClick={incrCount}>
-            Clicked: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>src/App.jsx</code>
-        </p>
-      </main>
+      <Carousel photos={carouselPhotos} title={carouselTitle} />
     </div>
   );
-};
+}
 
 export default App;
