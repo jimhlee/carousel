@@ -14,7 +14,7 @@ import Card from "./Card";
  *
  * App --> Carousel --> Card
  */
- function Carousel({ photos, title }) {
+function Carousel({ photos, title }) {
   const [currCardIdx, setCurrCardIdx] = useState(0);
 
   const currCard = photos[currCardIdx];
@@ -25,25 +25,31 @@ import Card from "./Card";
     setCurrCardIdx(currCardIdx + 1);
   }
 
+  //Decrements currCardIdx state by 1
+  function goBackward() {
+    setCurrCardIdx(currCardIdx - 1);
+  }
+  // Hide arrow instead of removing it
   return (
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
-        <i
-          className="bi bi-arrow-left-circle"
-          // FIXME: should be goBackward
-          onClick={goForward}
-        />
+          <i className={ currCardIdx > 0 ?
+            "bi bi-arrow-left-circle" :
+            "bi bi-arrow-left-circle invisible" }
+            onClick={goBackward}
+          />
         <Card
           caption={currCard.caption}
           src={currCard.src}
           currNum={currCardIdx + 1}
           totalNum={total}
         />
-        <i
-          className="bi bi-arrow-right-circle"
-          onClick={goForward}
-        />
+        <i className={ currCardIdx < total - 1 ?
+            "bi bi-arrow-right-circle" :
+            "bi bi-arrow-right-circle invisible" }
+            onClick={goForward}
+          />
       </div>
     </div>
   );

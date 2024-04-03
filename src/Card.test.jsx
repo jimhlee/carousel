@@ -3,12 +3,6 @@ import { it, expect } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
 import Card from "./Card";
 
- const TEST_IMAGE =   {
-    src: "test1.com",
-    caption: "testing image 1"
-  }
-
-
 it('renders without crashing', function() {
     render(<Card
         caption="testing image 1"
